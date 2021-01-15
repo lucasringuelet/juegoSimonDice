@@ -3,7 +3,6 @@ const violeta = document.getElementById('violeta')
 const naranja = document.getElementById('naranja')
 const verde = document.getElementById('verde')
 const btnEmpezar = document.getElementById('btnEmpezar')
-const cantNiveles = 5
 const nivelJuego = document.getElementById('nivel')
 
 
@@ -22,6 +21,7 @@ class Juego {
         btnEmpezar.classList.add('hide')
         nivelJuego.classList.add('hide')
         this.nivel = 1
+        this.cantNiveles = Number(window.prompt('¿Cuantos niveles queres jugar?'))
         this.colores = {
             celeste,
             violeta,
@@ -35,7 +35,7 @@ class Juego {
 
 
     generarSecuencia() {
-        this.secuencia = new Array(cantNiveles).fill(0).map(n => Math.floor(Math.random() * 4))
+        this.secuencia = new Array(this.cantNiveles).fill(0).map(n => Math.floor(Math.random() * 4))
     }
 
 
@@ -117,7 +117,7 @@ class Juego {
                         this.eliminarEventosClick()
 
                     nivelJuego.innerHTML = (this.nivel - 1)
-                    if (this.nivel === (cantNiveles + 1)) {
+                    if (this.nivel === (this.cantNiveles + 1)) {
                         swal('GANASTE!', ':)', 'success')
                             .then(() => {
                                 btnEmpezar.classList.remove('hide')
